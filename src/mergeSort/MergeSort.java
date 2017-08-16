@@ -1,18 +1,18 @@
+/**
+ * divide and conquer
+ * not in-place
+ * space complexity O(n)
+ * memory is proportional to the number of elements in the list
+ * time complexity O(nlogn)
+ */
 package mergeSort;
 
 public class MergeSort {
-
-    public static void main(String[] args) {
-	// write your code here
-        int[] numbers = {4, 3, 6, 2};
-        MergeSort.mergeSort(numbers);
-        for (int i = 0; i < numbers.length; i++) {
-            System.out.println(numbers[i]);
-        }
-    }
-
     /**
-     *
+     * this function receives an array and sort it with divide and conquer technique
+     * first divide into smaller problem
+     * second conquer via recursive calls
+     * third combine solution into a sorted array
      * @param arr
      */
     public static void mergeSort(int[] arr) {
@@ -21,6 +21,7 @@ public class MergeSort {
             return;
         int mid = length/2;
 
+        // create two arrays from first and second half of unsorted array
         int[] left = new int[mid];
         int[] right = new int[length - mid];
 
@@ -33,13 +34,16 @@ public class MergeSort {
             index++;
         }
 
+        // sort the first half of the array
         mergeSort(left);
+        // sort the second half of the array
         mergeSort(right);
+        // merge together two smaller and sorted halves
         merge(left, right, arr);
         }
 
     /**
-     *
+     * this function combines two sorted array into one sorted array.
      * @param left
      * @param right
      * @param arr
@@ -71,5 +75,13 @@ public class MergeSort {
            k++;
            j++;
        }
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = {4, 3, 6, 2};
+        MergeSort.mergeSort(numbers);
+        for (int i = 0; i < numbers.length; i++) {
+            System.out.println(numbers[i]);
+        }
     }
 }
